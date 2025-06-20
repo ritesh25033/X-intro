@@ -164,10 +164,10 @@ header {
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
-    opacity: 0;
-    visibility: hidden;
+    /* visibility: hidden; */
+    /* opacity: 0; */
     transition: opacity 0.3s ease, visibility 0.3s ease;
-    z-index: 997;
+    /* z-index: 997; */
     pointer-events: none;
 }
 
