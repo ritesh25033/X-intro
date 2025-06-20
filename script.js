@@ -6,27 +6,33 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeMenu = document.querySelector('.close-menu');
     const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
 
+    // Ensure all dropdowns are closed initially
+    dropdownToggles.forEach(toggle => {
+        toggle.classList.remove('link-open');
+        toggle.setAttribute('aria-expanded', 'false');
+    });
+
     // Mobile menu toggle
-    hamburger.addEventListener('click', function() {
-        navMenu.classList.toggle('active');
-        overlay.classList.toggle('active');
+    hamburger.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
         
-        if (navMenu.classList.contains('active')) {
-            openMenu.style.display = 'none';
-            closeMenu.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-            
-            // Force overlay visibility for Cypress tests
-            overlay.style.display = 'block';
-            overlay.style.zIndex = '998';
-            
-        } else {
+        const isActive = navMenu.classList.contains('active');
+        
+        if (isActive) {
+            // Close menu
+            navMenu.classList.remove('active');
+            overlay.classList.remove('active');
             openMenu.style.display = 'block';
             closeMenu.style.display = 'none';
             document.body.style.overflow = 'auto';
-            
-            // Reset overlay
-            overlay.style.display = '';
+        } else {
+            // Open menu
+            navMenu.classList.add('active');
+            overlay.classList.add('active');
+            openMenu.style.display = 'none';
+            closeMenu.style.display = 'block';
+            document.body.style.overflow = 'hidden';
         }
     });
 
@@ -37,29 +43,27 @@ document.addEventListener('DOMContentLoaded', function() {
         openMenu.style.display = 'block';
         closeMenu.style.display = 'none';
         document.body.style.overflow = 'auto';
-        overlay.style.display = '';
     });
 
     // Dropdown functionality
     dropdownToggles.forEach(toggle => {
         toggle.addEventListener('click', function(e) {
             e.preventDefault();
+            e.stopPropagation();
             
-            // Close other dropdowns
+            const isCurrentlyOpen = this.classList.contains('link-open');
+            
+            // Close all dropdowns first
             dropdownToggles.forEach(otherToggle => {
-                if (otherToggle !== this) {
-                    otherToggle.classList.remove('link-open');
-                    otherToggle.closest('.dropdown').classList.remove('active');
-                    otherToggle.setAttribute('aria-expanded', 'false');
-                }
+                otherToggle.classList.remove('link-open');
+                otherToggle.setAttribute('aria-expanded', 'false');
             });
             
-            // Toggle current dropdown
-            this.classList.toggle('link-open');
-            const dropdown = this.closest('.dropdown');
-            dropdown.classList.toggle('active');
-            const isExpanded = this.classList.contains('link-open');
-            this.setAttribute('aria-expanded', isExpanded);
+            // If this dropdown wasn't open, open it
+            if (!isCurrentlyOpen) {
+                this.classList.add('link-open');
+                this.setAttribute('aria-expanded', 'true');
+            }
         });
     });
 
@@ -68,7 +72,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!e.target.closest('.dropdown')) {
             dropdownToggles.forEach(toggle => {
                 toggle.classList.remove('link-open');
-                toggle.closest('.dropdown').classList.remove('active');
                 toggle.setAttribute('aria-expanded', 'false');
             });
         }
@@ -82,24 +85,10 @@ document.addEventListener('DOMContentLoaded', function() {
             openMenu.style.display = 'block';
             closeMenu.style.display = 'none';
             document.body.style.overflow = 'auto';
-            overlay.style.display = '';
             
             // Close all dropdowns on resize
             dropdownToggles.forEach(toggle => {
                 toggle.classList.remove('link-open');
-                toggle.closest('.dropdown').classList.remove('active');
-                toggle.setAttribute('aria-expanded', 'false');
-            });
-        }
-    });
-
-    // Additional event listeners for better mobile experience
-    document.addEventListener('touchstart', function(e) {
-        // Handle touch events for mobile dropdown closing
-        if (!e.target.closest('.dropdown') && window.innerWidth <= 768) {
-            dropdownToggles.forEach(toggle => {
-                toggle.classList.remove('link-open');
-                toggle.closest('.dropdown').classList.remove('active');
                 toggle.setAttribute('aria-expanded', 'false');
             });
         }
