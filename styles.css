@@ -167,15 +167,15 @@ header {
     visibility: visible;
     opacity: 1;
     transition: opacity 0.3s ease, visibility 0.3s ease;
-    /* z-index: 997; */
+    z-index: 997;
     pointer-events: none;
 }
-/* 
+
 .overlay.active {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
-} */
+} 
 
 /* Main Content */
 main {
