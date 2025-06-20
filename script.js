@@ -35,19 +35,21 @@ document.addEventListener('DOMContentLoaded', function() {
     dropdownToggles.forEach(toggle => {
         toggle.addEventListener('click', function(e) {
             e.preventDefault();
-            const dropdown = this.closest('.dropdown');
             
             // Close other dropdowns
             dropdownToggles.forEach(otherToggle => {
                 if (otherToggle !== this) {
+                    otherToggle.classList.remove('link-open');
                     otherToggle.closest('.dropdown').classList.remove('active');
                     otherToggle.setAttribute('aria-expanded', 'false');
                 }
             });
             
             // Toggle current dropdown
+            this.classList.toggle('link-open');
+            const dropdown = this.closest('.dropdown');
             dropdown.classList.toggle('active');
-            const isExpanded = dropdown.classList.contains('active');
+            const isExpanded = this.classList.contains('link-open');
             this.setAttribute('aria-expanded', isExpanded);
         });
     });
@@ -56,6 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('click', function(e) {
         if (!e.target.closest('.dropdown')) {
             dropdownToggles.forEach(toggle => {
+                toggle.classList.remove('link-open');
                 toggle.closest('.dropdown').classList.remove('active');
                 toggle.setAttribute('aria-expanded', 'false');
             });

@@ -25,7 +25,7 @@ header {
     background-color: hsl(0, 0%, 98%);
 }
 
-.logo img {
+.logo {
     height: 2rem;
 }
 
@@ -90,7 +90,13 @@ header {
     transform: rotate(180deg);
 }
 
-.dropdown-link {
+.nav-link.link-open + .dropdown-list {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-link a {
     display: flex;
     align-items: center;
     gap: 0.75rem;
@@ -100,7 +106,7 @@ header {
     transition: color 0.3s ease;
 }
 
-.dropdown-link:hover {
+.dropdown-link a:hover {
     color: hsl(0, 0%, 8%);
 }
 
@@ -119,7 +125,7 @@ header {
     gap: 1rem;
 }
 
-.btn-login, .btn-register {
+.registration button {
     padding: 0.75rem 1.5rem;
     border: none;
     background: none;
@@ -134,7 +140,7 @@ header {
     border: 2px solid hsl(0, 0%, 41%);
 }
 
-.btn-login:hover, .btn-register:hover {
+.registration button:hover {
     color: hsl(0, 0%, 8%);
 }
 
