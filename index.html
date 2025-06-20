@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snap - Make remote work</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="./assets/images/logo.svg" alt="snap's logo">
+            </div>
+            
+            <div class="nav-menu">
+                <ul class="nav-links">
+                    <li class="nav-item dropdown">
+                        <button class="nav-link dropdown-toggle" aria-expanded="false">
+                            Features
+                            <img src="./assets/images/icon-arrow-down.svg" alt="" class="arrow">
+                        </button>
+                        <ul class="dropdown-list">
+                            <li><a href="#" class="dropdown-link" aria-label="todo-list">
+                                <img src="./assets/images/icon-todo.svg" alt="">
+                                Todo List
+                            </a></li>
+                            <li><a href="#" class="dropdown-link">
+                                <img src="./assets/images/icon-calendar.svg" alt="">
+                                Calendar
+                            </a></li>
+                            <li><a href="#" class="dropdown-link">
+                                <img src="./assets/images/icon-reminders.svg" alt="">
+                                Reminders
+                            </a></li>
+                            <li><a href="#" class="dropdown-link">
+                                <img src="./assets/images/icon-planning.svg" alt="">
+                                Planning
+                            </a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="nav-item dropdown">
+                        <button class="nav-link dropdown-toggle" aria-expanded="false">
+                            Company
+                            <img src="./assets/images/icon-arrow-down.svg" alt="" class="arrow">
+                        </button>
+                        <ul class="dropdown-list">
+                            <li><a href="#" class="dropdown-link">History</a></li>
+                            <li><a href="#" class="dropdown-link">Our Team</a></li>
+                            <li><a href="#" class="dropdown-link">Blog</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Careers</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">About</a>
+                    </li>
+                </ul>
+                
+                <div class="registration">
+                    <button class="btn-login">Login</button>
+                    <button class="btn-register">Register</button>
+                </div>
+            </div>
+            
+            <div class="hamburger">
+                <span class="open-menu"></span>
+                <span class="close-menu" style="display: none;">
+                    <img src="./assets/images/icon-close-menu.svg" alt="">
+                </span>
+            </div>
+        </nav>
+        
+        <div class="overlay"></div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="text-content">
+                <h1>Make remote work</h1>
+                <p>Get your team in sync, no matter your location. Streamline processes, create team rituals, and watch productivity soar.</p>
+                <button class="cta-button">Learn More</button>
+                
+                <div class="clients">
+                    <img src="./assets/images/client-databiz.svg" alt="Databiz">
+                    <img src="./assets/images/client-audiophile.svg" alt="Audiophile">
+                    <img src="./assets/images/client-meet.svg" alt="Meet">
+                    <img src="./assets/images/client-maker.svg" alt="Maker">
+                </div>
+            </div>
+            
+            <div class="hero-image">
+                <picture>
+                    <source media="(min-width: 768px)" srcset="./assets/images/image-hero-desktop.png">
+                    <img src="./assets/images/image-hero-mobile.png" alt="Hero image">
+                </picture>
+            </div>
+        </section>
+    </main>
+
+    <footer class="attribution">
+        Challenge by <a href="https://crio.do" target="_blank">Crio.do</a>. 
+        Coded by Ketan.
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
