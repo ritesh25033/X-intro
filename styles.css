@@ -15,9 +15,12 @@ body {
 /* Header and Navigation */
 header {
     position: relative;
+    z-index: 1000;
 }
 
 .navbar {
+    position: relative;
+    z-index: 1001;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -33,6 +36,7 @@ header {
     display: flex;
     align-items: center;
     gap: 2rem;
+    z-index: 999;
 }
 
 .nav-links {
@@ -96,6 +100,10 @@ header {
     transform: translateY(0);
 }
 
+.nav-link.link-open .arrow {
+    transform: rotate(180deg);
+}
+
 .dropdown-link a {
     display: flex;
     align-items: center;
@@ -151,6 +159,8 @@ header {
 .hamburger {
     display: none;
     cursor: pointer;
+    position: relative;
+    z-index: 1002;
 }
 
 .open-menu {
@@ -166,18 +176,21 @@ header {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s ease;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
     z-index: 998;
+    pointer-events: none;
 }
 
 .overlay.active {
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
+    display: block;
 }
 
 /* Main Content */
@@ -295,11 +308,12 @@ main {
         background: none;
         padding: 1rem 0 0 1rem;
         transform: none;
+        opacity: 1;
+        visibility: visible;
     }
 
     .hamburger {
         display: block;
-        z-index: 1000;
     }
 
     .hero {

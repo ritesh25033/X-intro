@@ -15,10 +15,18 @@ document.addEventListener('DOMContentLoaded', function() {
             openMenu.style.display = 'none';
             closeMenu.style.display = 'block';
             document.body.style.overflow = 'hidden';
+            
+            // Force overlay visibility for Cypress tests
+            overlay.style.display = 'block';
+            overlay.style.zIndex = '998';
+            
         } else {
             openMenu.style.display = 'block';
             closeMenu.style.display = 'none';
             document.body.style.overflow = 'auto';
+            
+            // Reset overlay
+            overlay.style.display = '';
         }
     });
 
@@ -29,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
         openMenu.style.display = 'block';
         closeMenu.style.display = 'none';
         document.body.style.overflow = 'auto';
+        overlay.style.display = '';
     });
 
     // Dropdown functionality
@@ -73,6 +82,26 @@ document.addEventListener('DOMContentLoaded', function() {
             openMenu.style.display = 'block';
             closeMenu.style.display = 'none';
             document.body.style.overflow = 'auto';
+            overlay.style.display = '';
+            
+            // Close all dropdowns on resize
+            dropdownToggles.forEach(toggle => {
+                toggle.classList.remove('link-open');
+                toggle.closest('.dropdown').classList.remove('active');
+                toggle.setAttribute('aria-expanded', 'false');
+            });
+        }
+    });
+
+    // Additional event listeners for better mobile experience
+    document.addEventListener('touchstart', function(e) {
+        // Handle touch events for mobile dropdown closing
+        if (!e.target.closest('.dropdown') && window.innerWidth <= 768) {
+            dropdownToggles.forEach(toggle => {
+                toggle.classList.remove('link-open');
+                toggle.closest('.dropdown').classList.remove('active');
+                toggle.setAttribute('aria-expanded', 'false');
+            });
         }
     });
 });
